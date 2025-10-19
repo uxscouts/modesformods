@@ -1,1 +1,67 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="/devedge-srce/lib/xsl/devedge-1.00/article_en.xsl"?>
+<m4m:article
+   url="[/devedge-srce/viewsource/2003/example-article/]"
+   xmlns:nde="http://devedge.netscape.com/2002/de"
+   xml:lang="[language code]">
+  <m4m:header>
+    <m4m:title>
+       [insert title here]
+    </m4m:title>
+    <m4m:category>
+      [insert category here]
+    </m4m:category>
+    <m4m:pubdate year="[CCYY]" month="[MM]" day="[DD]"/>
+    <m4m:moddate year="[CCYY]" month="[MM]" day="[DD]"/>
+    <m4m:summary>
+      [short summary of piece (blurb text)]
+    </m4m:summary>
+    <m4m:abstract>
+      [longer abstract, typically a paragraph in length]
+    </m4m:abstract>
+    <m4m:channels>
+      <m4m:channel id="[channel id]"/>
+      <m4m:channel id="[channel id]"/>
+    </m4m:channels>
+    <m4m:keywords>
+      [comma separated, keywords]
+    </m4m:keywords>
+    <m4m:translations>
+      <m4m:trans url="[url]" title="[title]">[language]</nde:trans>
+    </m4m:translations>
+    <m4m:alternates>
+      <m4m:alt url="[url]" title="[title]">[format]</nde:alt>
+    </m4m:alternates>
+    <m4m:authlist>
+      <m4m:author>
+        <m4m:authname>[name]</nde:authname>
+        <m4m:authtitle>[title]</nde:authtitle>
+        <m4m:authaffil>[affiliation]</nde:authaffil>
+        <m4m:authcontact>[info]</nde:authcontact>
+        <m4m:authdesc>[bio statement]</nde:authdesc>
+      </m4m:author>
+    </m4m:authlist>
+    <m4m:copyright>
+      <m4m:copyhold>[holder of copyright]</nde:copyhold>
+      <m4m:copyyear>[CCYY]</nde:copyyear>
+      <m4m:copyaddr>[contact information]</nde:copyaddr>
+    </m4m:copyright>
+  </m4m:header>
+  <m4m:head>
+   [for document-specific styles, links, scripts, etc.]
+  </m4m:head>
+  <m4m:content>
+    <h2 id="toc1">toc1</h2>
+    <p>content of piece 1</p>
+    <h2 id="toc2">toc2</h2>
+    <p>content of piece 2</p>
+    <h2>toc3</h2>
+    <p>content of piece 3</p>
+    <h2>toc4</h4>
+    <p>content of piece 4</p>
+  </m4m:content>
+
+
+
+
+</nde:article>
