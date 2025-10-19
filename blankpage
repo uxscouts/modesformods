@@ -1,54 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?xml-stylesheet type="text/xsl" href="/devedge-srce/lib/xsl/devedge-1.00/article_en.xsl"?>
 <m4m:article
-   url="[/devedge-srce/viewsource/2003/example-article/]"
-   xmlns:nde="http://devedge.netscape.com/2002/de"
-   xml:lang="[language code]">
+   url="/devedge-srce/viewsource/2003/example-article/"
+   xmlns:m4m="http://devedge.netscape.com/2002/de"
+   xml:lang="English">
   <m4m:header>
     <m4m:title>
-       [insert title here]
+       Test Title
     </m4m:title>
     <m4m:category>
-      [insert category here]
+     Test Category
     </m4m:category>
-    <m4m:pubdate year="[CCYY]" month="[MM]" day="[DD]"/>
-    <m4m:moddate year="[CCYY]" month="[MM]" day="[DD]"/>
+    <m4m:pubdate year="2025" month="10" day="19"/>
+    <m4m:moddate year="2025" month="12" day="19"/>
     <m4m:summary>
-      [short summary of piece (blurb text)]
+      short summary of piece (blurb text)
     </m4m:summary>
     <m4m:abstract>
-      [longer abstract, typically a paragraph in length]
+      longer abstract, typically a paragraph in length
     </m4m:abstract>
-    <m4m:channels>
-      <m4m:channel id="[channel id]"/>
-      <m4m:channel id="[channel id]"/>
-    </m4m:channels>
     <m4m:keywords>
-      [comma separated, keywords]
+      comma, separated, keywords,
     </m4m:keywords>
-    <m4m:translations>
-      <m4m:trans url="[url]" title="[title]">[language]</nde:trans>
-    </m4m:translations>
-    <m4m:alternates>
-      <m4m:alt url="[url]" title="[title]">[format]</nde:alt>
-    </m4m:alternates>
     <m4m:authlist>
       <m4m:author>
-        <m4m:authname>[name]</nde:authname>
-        <m4m:authtitle>[title]</nde:authtitle>
-        <m4m:authaffil>[affiliation]</nde:authaffil>
-        <m4m:authcontact>[info]</nde:authcontact>
-        <m4m:authdesc>[bio statement]</nde:authdesc>
+        <m4m:authname>name</m4m:authname>
+        <m4m:authtitle>title</m4m:authtitle>
+        <m4m:authaffil>affiliation</m4m:authaffil>
+        <m4m:authcontact>info</m4m:authcontact>
+        <m4m:authdesc>bio statement</m4m:authdesc>
       </m4m:author>
     </m4m:authlist>
     <m4m:copyright>
-      <m4m:copyhold>[holder of copyright]</nde:copyhold>
-      <m4m:copyyear>[CCYY]</nde:copyyear>
-      <m4m:copyaddr>[contact information]</nde:copyaddr>
+      <m4m:copyhold>holder of copyright</m4m:copyhold>
+      <m4m:copyyear>2025</m4m:copyyear>
+      <m4m:copyaddr>contact information</m4m:copyaddr>
     </m4m:copyright>
   </m4m:header>
   <m4m:head>
-   [for document-specific styles, links, scripts, etc.]
+   for document-specific styles, links, scripts, etc.
   </m4m:head>
   <m4m:content>
     <h2 id="toc1">toc1</h2>
@@ -60,8 +50,4 @@
     <h2>toc4</h4>
     <p>content of piece 4</p>
   </m4m:content>
-
-
-
-
 </nde:article>
