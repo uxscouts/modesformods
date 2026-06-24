@@ -1,1 +1,19 @@
 
+                  ┌───────────────────────────────────────────────┐
+                  │          React Frontend / Mobile PWA          │
+                  │  (Service Worker + IndexedDB + LocalStorage) │
+                  └───────┬───────────────────────────────▲───────┘
+                          │                               │
+                JSON HTTP Requests                  Offline Cache
+                          │                               │
+                  ┌───────▼───────────────────────────────┴───────┐
+                  │                 PHP REST API                  │
+                  │         (Slim Framework or Custom MVC)        │
+                  └───────┬───────────────────────────────▲───────┘
+                          │                               │
+                     SQL Queries                     Data Stream
+                          │                               │
+                  ┌───────▼───────────────────────────────┴───────┐
+                  │                MySQL Database                 │
+                  │     (Users, Prefs, Categories, Articles)     │
+                  └───────────────────────────────────────────────┘
