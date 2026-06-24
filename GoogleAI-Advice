@@ -479,6 +479,10 @@ in IndexedDB, and loads the screen. Once the train passes Manhattan Bridge and h
 DeKalb, isOffline triggers, and clicking around continues working flawlessly because the data is read directly 
 from memory.
 
+Instant Responsiveness: Because IndexedDB handles the updates locally, marking an item as read feels instantaneous—there 
+is zero network latency lag waiting for a round-trip to your PHP container.
+
+
 
 
 
