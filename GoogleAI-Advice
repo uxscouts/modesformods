@@ -17,3 +17,17 @@
                   │                MySQL Database                 │
                   │     (Users, Prefs, Categories, Articles)     │
                   └───────────────────────────────────────────────┘
+
+
+Tech Architecture: Implementing Your FeaturesTo map your features cleanly to a React/PHP/MySQL stack, 
+you should treat the mobile experience as a Progressive Web App (PWA) or pack it using Capacitor/Cordova 
+so your React codebase can run smoothly on iOS and Android devices.
+
+1. The Q-Train Offline Download (Text-Only Mode)
+
+The under-river tunnels connecting Manhattan and Brooklyn are notoriously weak cellular zones. To make text instantly 
+available between Canal and DeKalb, your application needs an Offline-First Storage Engine:
+
+React Implementation: Use a browser Service Worker combined with IndexedDB (via a library like Dexie.js).
+
+
