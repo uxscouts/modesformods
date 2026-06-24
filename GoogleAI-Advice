@@ -30,4 +30,13 @@ available between Canal and DeKalb, your application needs an Offline-First Stor
 
 React Implementation: Use a browser Service Worker combined with IndexedDB (via a library like Dexie.js).
 
+The Workflow: When the user is above ground, React fires a fetch request to your PHP backend. Your backend 
+returns a compressed, text-only JSON payload of the day’s articles. React dumps this text directly into IndexedDB.
+
+The Result: When the train drops underground and loses connection, the React app detects the offline state 
+(navigator.onLine === false) and seamlessly pulls the raw text straight from local device storage.
+
+
+
+
 
