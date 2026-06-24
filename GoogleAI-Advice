@@ -1,4 +1,49 @@
 
+Modes for Mods:
+
+
+---------------------------------------------------------
+
+A clean, ad-free curation newsletter focused on linking to well-established, well-lawyered articles is 
+the safest, most legally bulletproof method to actively participate in political accountability without 
+exposing yourself to ruinous litigation. By serving as an aggregator who curates existing investigative 
+reporting, you shield yourself behind the legal departments of major news institutions like The Washington 
+Post or ProPublica while still advancing the democratic causes you care about.
+
+Why a Curation Model Safeguards You
+
+No Defamation Exposure: You are not making original, unverified assertions of fact. You are pointing readers to 
+statements that have already passed corporate legal review.
+
+No Copyright Violations: You are not copy-pasting full text. Providing a short, unique summary alongside a direct 
+outbound link falls squarely under safe digital practices and drives traffic to the primary source.
+
+No Ad Clutter: Operating via an email-first format completely removes the reliance on broken, privacy-invasive banner 
+ad networks that ruin traditional news websites.
+
+A Model for Legal Accountability Curation
+
+To hold political actors accountable to their shifting stances without getting sued, focus entirely on archival 
+documentation. You can structure your publication around tracking public statements and official records:
+
+The "Receipts" Archive: Create a recurring segment that pairs past actions with current rhetoric. If a figure 
+attempts to distance themselves from extreme positions, publish the official, unedited voting record or public 
+transcript side-by-side with their new statement.
+
+Tracking Court Records: Curate entries directly from public federal court dockets, unsealed indictments, 
+and congressional findings. Facts derived from official government proceedings are heavily protected from 
+libel claims under the "fair report privilege."
+
+
+-----------------------------------------------
+
+
+
+
+
+
+
+
                   ┌───────────────────────────────────────────────┐
                   │          React Frontend / Mobile PWA          │
                   │  (Service Worker + IndexedDB + LocalStorage) │
@@ -119,12 +164,42 @@ services:
       - ./mysql_data:/var/lib/mysql
 
 
----------------------------------------------------------
 
-A clean, ad-free curation newsletter focused on linking to well-established, well-lawyered articles is 
-the safest, most legally bulletproof method to actively participate in political accountability without 
-exposing yourself to ruinous litigation. By serving as an aggregator who curates existing investigative 
-reporting, you shield yourself behind the legal departments of major news institutions like The Washington 
-Post or ProPublica while still advancing the democratic causes you care about.
+
+2. Today's Execution Steps in Codespaces
+
+Create the directory: In your terminal, run mkdir mysql_data at the root of your project 
+to explicitly create the host folder.
+
+Bring down the old setup: Run docker-compose down to stop any loose, non-persistent containers.
+
+Start the persistent setup: Run docker-compose up -d.
+
+Verify it worked: Look at your sidebar file tree. You will see the mysql_data folder suddenly fill 
+with internal MySQL engine files (like ibdata1, logs, and database folders).
+
+The Test: Create a test table, add a row, run docker-compose down, then run docker-compose up -d again. 
+Your data will still be completely intact because it is saved physically in your Codespace workspace.
+
+
+-------------------------------------------
+
+Part 2: The PHP REST Endpoint (/api/articles.php)
+
+This lightweight, native PHP script handles your exact feature requirements. It reads the logged-in user's 
+preferences, filters out the categories they hate (like your "Gag me, Lifestyles" rule), joins the user_reads 
+table to tell React which articles to grey out, and returns a clean, text-only JSON payload for the 
+Q-train offline mode.
+
+
+
+
+
+
+
+
+
+
+
 
 
