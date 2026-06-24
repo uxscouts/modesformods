@@ -191,7 +191,116 @@ preferences, filters out the categories they hate (like your "Gag me, Lifestyles
 table to tell React which articles to grey out, and returns a clean, text-only JSON payload for the 
 Q-train offline mode.
 
-test
+<?php
+// 1. Set clean API headers
+header("Access-Control-Allow-Origin: *");
+header("Content-Type: application/json; charset=UTF-8");
+header("Access-Control-Allow-Methods: GET");
+
+// 2. Database Connection using PDO
+$host = 'mysql_db'; // Matches the docker-compose service name
+$db   = 'modes_for_mods';
+$user = 'mfm_user';
+$pass = 'mfm_password';
+$charset = 'utf8mb4';
+
+$dsn = "mysql:host=$host;dbname=$db;charset=$charset";
+try {
+     $pdo = new PDO($dsn, $user, $pass, [
+         PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
+         PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+     ]);
+} catch (\PDOException $e) {
+     http_response_code(500);
+     echo json_encode(["error" => "Database connection failed: " . $e->getMessage()]);
+     exit;
+}
+
+// 3. Identify the current user (Mocked here, normally parsed from a JWT or session token)
+$current_user_id = 1; 
+
+try {
+    // 4. Query hidden categories the user hates (e.g., Lifestyles)
+    $prefStmt = $pdo->prepare("SELECT category_id FROM user_hidden_categories WHERE user_id = ?");
+    $prefStmt->execute([$current_user_id]);
+    $hiddenCategories = $prefStmt->fetchAll(PDO::FETCH_COLUMN);
+
+    // Build the conditional string for the SQL statement based on exclusions
+    $exclusionClause = "";
+    if (!empty($hiddenCategories)) {
+        // Creates a string like (?, ?, ?) safely for PDO bind
+        $placeholders = implode(',', array_fill(0, count($hiddenCategories), '?'));
+        $exclusionClause = "WHERE a.category_id NOT IN ($placeholders)";
+    }
+
+    // 5. Query the lightweight text data for the daily feed
+    // LEFT JOIN user_reads tells the frontend if an article is already read (is_read = 1 or 0)
+    $sql = "
+        SELECT 
+            a.id, 
+            a.title, 
+            a.clean_text_content, 
+            a.source_url, 
+            a.published_at,
+            CASE WHEN ur.article_id IS NOT NULL THEN 1 ELSE 0 END AS is_read
+        FROM articles a
+        LEFT JOIN user_reads ur 
+            ON a.id = ur.article_id AND ur.user_id = ?
+        $exclusionClause
+        ORDER BY a.published_at DESC 
+        LIMIT 50
+    ";
+
+    $mainStmt = $pdo->prepare($sql);
+
+    // Bind parameters dynamically depending on whether preferences exist
+    $params = [$current_user_id];
+    if (!empty($hiddenCategories)) {
+        $params = array_merge($params, $hiddenCategories);
+    }
+
+    $mainStmt->execute($params);
+    $articles = $mainStmt->fetchAll();
+
+    // 6. Return the clean payload to React
+    http_response_code(200);
+    echo json_encode([
+        "status" => "success",
+        "count" => count($articles),
+        "data" => $articles
+    ]);
+
+} catch (\Exception $e) {
+    http_response_code(500);
+    echo json_encode(["error" => "Query failed: " . $e->getMessage()]);
+}
+
+
+
+Why this benefits Modes for Mods:
+
+Super Lean Payload: Notice it doesn't query heavy HTML blocks, ads, tracker tracking strings, or 
+massive tracking cookies. It only sends IDs, titles, and clean text, keeping the fetch operation 
+quick enough to download completely right before stepping onto the subway platform.
+
+React UI-Ready: The data payload gives your React app an explicit is_read binary value (0 or 1) for 
+every entry. React can immediately read this flag to dim the item or calculate the top progress meter 
+bar instantly.
+
+To help you continue putting your game plan for Modes for Mods into motion, consider these next 
+development steps:
+
+Would you like the corresponding React fetch function that saves this exact JSON structure into 
+browser localStorage or IndexedDB for offline train use?
+
+To achieve seamless reading on the Q train, storing the text payload in IndexedDB is significantly 
+better than localStorage. localStorage has a strict limit of around 5MB, which will quickly choke 
+on full-text news articles. IndexedDB can store hundreds of megabytes of structured data directly 
+on the device.
+
+The most reliable, industry-standard way to manage IndexedDB in a React application is by using a 
+small, lightweight library called Dexie.js.
+
 
 
 
